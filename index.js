@@ -37,10 +37,10 @@ const cors = require("cors")
  
 
 // event activities 
-const EventModel = require('./models/event.js')
-const ServiceModel = require('./models/service.js')
+// const EventModel = require('./models/event.js')
+// const ServiceModel = require('./models/service.js')
 
-const ContactModel = require('./models/contact.js')
+// const ContactModel = require('./models/contact.js')
 const User = require('./models/User.js')
 const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
@@ -149,139 +149,139 @@ app.post("/api/auth/register", async (req, res) => {
 
 
 
-app.post('/contactassociation', (req, res) => {
-    // console.log(" Incoming order:", req.body); 
-     // للتأكد من وصول البيانات
+// app.post('/contactassociation', (req, res) => {
+//     // console.log(" Incoming order:", req.body); 
+//      // للتأكد من وصول البيانات
 
-  ContactModel.create(req.body)
-    .then(contactsch=>{
-            console.log(" Saved order:", contactsch);
+//   ContactModel.create(req.body)
+//     .then(contactsch=>{
+//             console.log(" Saved order:", contactsch);
 
-       res.json(contactsch)})
-    .catch(err => res.json(err));
-})
-
-
-
-app.get('/contactschool', async (req, res) => {
-  try {
-    const contacts = await ContactModel.find();
-        // console.log(" Sending contacts:", contacts); 
-
-    res.json(contacts);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch contacts" });
-  }
-});
+//        res.json(contactsch)})
+//     .catch(err => res.json(err));
+// })
 
 
-app.delete("/deleteMessage/:id", async (req, res) => {
-  try {
-    await ContactModel.findByIdAndDelete(req.params.id);
-    res.json({ success: true, message: "Message deleted" });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
-app.post('/contactschool', (req, res) => {
-    // console.log(" Incoming order:", req.body); 
-     // للتأكد من وصول البيانات
-
-  ContactModel.create(req.body)
-    .then(contactsch=>{
-            console.log(" Saved order:", contactsch);
-
-       res.json(contactsch)})
-    .catch(err => res.json(err));
-})
-
-// app.put("/deleteEventImage/:id" ,async (req, res) => {
+// app.get('/contactschool', async (req, res) => {
 //   try {
-//     // Receives image index from frontend
-//     const { index } = req.body;
-//     const event = await EventModel.findById(req.params.id);
-//     if (!event) return res.status(404).json({ error: "Event not found" });
+//     const contacts = await ContactModel.find();
+//         // console.log(" Sending contacts:", contacts); 
 
-//     event.images.splice(index, 1); // remove the image at the given index
-//     await event.save();
+//     res.json(contacts);
+//   } catch (err) {
+//     res.status(500).json({ error: "Failed to fetch contacts" });
+//   }
+// });
 
-//     res.json(event);
+
+// app.delete("/deleteMessage/:id", async (req, res) => {
+//   try {
+//     await ContactModel.findByIdAndDelete(req.params.id);
+//     res.json({ success: true, message: "Message deleted" });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// app.post('/contactschool', (req, res) => {
+//     // console.log(" Incoming order:", req.body); 
+//      // للتأكد من وصول البيانات
+
+//   ContactModel.create(req.body)
+//     .then(contactsch=>{
+//             console.log(" Saved order:", contactsch);
+
+//        res.json(contactsch)})
+//     .catch(err => res.json(err));
+// })
+
+// // app.put("/deleteEventImage/:id" ,async (req, res) => {
+// //   try {
+// //     // Receives image index from frontend
+// //     const { index } = req.body;
+// //     const event = await EventModel.findById(req.params.id);
+// //     if (!event) return res.status(404).json({ error: "Event not found" });
+
+// //     event.images.splice(index, 1); // remove the image at the given index
+// //     await event.save();
+
+// //     res.json(event);
+// //   } catch (err) {
+// //     res.status(500).json(err);
+// //   }
+// // });
+
+
+// // app.delete("/deleteEvent/:id", async (req, res) => {
+// //   const id = req.params.id;
+// //   try {
+// //     const deletedUser = await EventModel.findByIdAndDelete(id);
+// //     if (!deletedUser) {
+// //       return res.status(404).json({ message: "User not found" });
+// //     }
+// //     res.json(deletedUser);
+// //   } catch (err) {
+// //     res.status(500).json({ error: err.message });
+// //   }
+// // });
+
+
+
+
+
+// // services
+
+// app.get("/services", async (req, res) => {
+//   try {
+//     const services = await ServiceModel.find();
+//     res.json(services);
 //   } catch (err) {
 //     res.status(500).json(err);
 //   }
 // });
 
 
-// app.delete("/deleteEvent/:id", async (req, res) => {
-//   const id = req.params.id;
+// app.get("/getService/:id" , (req,res) => {
+//     const id = req.params.id;
+//     EventModel.findById({_id:id})
+//     .then(event => res.json(event)) 
+//     .catch(err => res.json(err))
+// })
+// app.post("/createservices", async (req, res) => {
 //   try {
-//     const deletedUser = await EventModel.findByIdAndDelete(id);
-//     if (!deletedUser) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-//     res.json(deletedUser);
+//     const service = await ServiceModel.create(req.body);
+//     res.status(201).json(service);
 //   } catch (err) {
-//     res.status(500).json({ error: err.message });
+//     res.status(500).json(err);
 //   }
 // });
 
 
 
 
-
-// services
-
-app.get("/services", async (req, res) => {
-  try {
-    const services = await ServiceModel.find();
-    res.json(services);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-app.get("/getService/:id" , (req,res) => {
-    const id = req.params.id;
-    EventModel.findById({_id:id})
-    .then(event => res.json(event)) 
-    .catch(err => res.json(err))
-})
-app.post("/createservices", async (req, res) => {
-  try {
-    const service = await ServiceModel.create(req.body);
-    res.status(201).json(service);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// app.put("/services/:id", async (req, res) => {
+//   try {
+//     const updated = await ServiceModel.findByIdAndUpdate(
+//       req.params.id,
+//       req.body,
+//       { new: true }
+//     );
+//     res.json(updated);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
-
-
-app.put("/services/:id", async (req, res) => {
-  try {
-    const updated = await ServiceModel.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    res.json(updated);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-app.delete("/services/:id", async (req, res) => {
-  try {
-    await ServiceModel.findByIdAndDelete(req.params.id);
-    res.json({ message: "Service deleted" });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// app.delete("/services/:id", async (req, res) => {
+//   try {
+//     await ServiceModel.findByIdAndDelete(req.params.id);
+//     res.json({ message: "Service deleted" });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
 

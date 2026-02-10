@@ -81,10 +81,10 @@ app.use(cors());
 // const __dirname = path.resolve();
 
 // mongoose.connect('mongodb://127.0.0.1:27017/associationDB')
- const URL = process.env.MONGODB_URL;
-mongoose.connect(URL)
-.then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.log("❌ MongoDB error:", err.message));
+//  const URL = process.env.MONGODB_URL;
+// mongoose.connect(URL)
+// .then(() => console.log("✅ MongoDB connected"))
+//   .catch(err => console.log("❌ MongoDB error:", err.message));
 // const URL = "mongodb://127.0.0.1:27017/school"
 //  const URL = process.env.MONGODB_URL;
 // //  {
@@ -104,6 +104,15 @@ mongoose.connect(URL)
 //  Ensure uploads folder exists
 
 
+
+app.delete("/services/:id", async (req, res) => {
+  try {
+    await ServiceModel.findByIdAndDelete(req.params.id);
+    res.json({ message: "Service deleted" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 

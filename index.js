@@ -41,7 +41,7 @@ const cors = require("cors")
 // const ServiceModel = require('./models/service.js')
 
 // const ContactModel = require('./models/contact.js')
-const User = require('./models/User.js')
+// const User = require('./models/User.js')
 const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
 // const PORT = process.env.PORT;
@@ -101,45 +101,45 @@ app.use(cors());
 
 
 
-app.post("/api/auth/login", async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email: email.toLowerCase() });
-  if (!user) return res.status(400).json({ message: " البريد الإلكتروني أو كلمة المرور  غير صحيحة " });
+// app.post("/api/auth/login", async (req, res) => {
+//   const { email, password } = req.body;
+//   const user = await User.findOne({ email: email.toLowerCase() });
+//   if (!user) return res.status(400).json({ message: " البريد الإلكتروني أو كلمة المرور  غير صحيحة " });
 
-  const valid = await user.validatePassword(password);
-  if (!valid) return res.status(400).json({ message: " البريد الإلكتروني أو كلمة المرور  غير صحيحة " });
+//   const valid = await user.validatePassword(password);
+//   if (!valid) return res.status(400).json({ message: " البريد الإلكتروني أو كلمة المرور  غير صحيحة " });
 
-  res.json({ message: " تسجيل دخول صحيح", email: user.email });
-});
+//   res.json({ message: " تسجيل دخول صحيح", email: user.email });
+// });
 
-//  Change Password Route
-app.post("/api/auth/change-password", async (req, res) => {
-  const { email, oldPassword,newPassword } = req.body;
-  const user = await User.findOne({ email: email.toLowerCase() });
-  if (!user) return res.status(400).json({ message: "User not found" });
+// //  Change Password Route
+// app.post("/api/auth/change-password", async (req, res) => {
+//   const { email, oldPassword,newPassword } = req.body;
+//   const user = await User.findOne({ email: email.toLowerCase() });
+//   if (!user) return res.status(400).json({ message: "User not found" });
 
-  //  Verify old password
-  const valid = await user.validatePassword(oldPassword);
-  if (!valid) return res.status(400).json({ message: "Old password is incorrect" });
+//   //  Verify old password
+//   const valid = await user.validatePassword(oldPassword);
+//   if (!valid) return res.status(400).json({ message: "Old password is incorrect" });
 
-  await user.setPassword(newPassword);
-  await user.save();
+//   await user.setPassword(newPassword);
+//   await user.save();
 
-  res.json({ message: "Password updated successfully" });
-});
+//   res.json({ message: "Password updated successfully" });
+// });
 
-//  Register Route
-app.post("/api/auth/register", async (req, res) => {
-  const { email, password } = req.body;
-  const exist = await User.findOne({ email: email.toLowerCase() });
-  if (exist) return res.status(400).json({ message: "Email already exists" });
+// //  Register Route
+// app.post("/api/auth/register", async (req, res) => {
+//   const { email, password } = req.body;
+//   const exist = await User.findOne({ email: email.toLowerCase() });
+//   if (exist) return res.status(400).json({ message: "Email already exists" });
 
-  const user = new User({ email: email.toLowerCase() });
-  await user.setPassword(password);
-  await user.save();
+//   const user = new User({ email: email.toLowerCase() });
+//   await user.setPassword(password);
+//   await user.save();
 
-  res.json({ message: "User created" });
-});
+//   res.json({ message: "User created" });
+// });
 
 
 

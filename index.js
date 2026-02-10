@@ -26,7 +26,7 @@
 const express = require('express')
 // const mongoose = require('mongoose')
 const cors = require("cors")
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 //  const bcrypt = require("bcrypt");
  
 
@@ -42,7 +42,7 @@ const cors = require("cors")
 
 // const ContactModel = require('./models/contact.js')
 // const User = require('./models/User.js')
-const dotenv = require("dotenv");
+// const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
 // const PORT = process.env.PORT;
 // const PORT = 3001;

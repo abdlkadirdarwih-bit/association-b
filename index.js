@@ -41,7 +41,7 @@ const path = require('path');
 // const ServiceModel = require('./models/service.js')
 
 // const ContactModel = require('./models/contact.js')
-// const User = require('./models/User.js')
+const User = require('./models/User.js')
 // const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
 // const PORT = process.env.PORT;

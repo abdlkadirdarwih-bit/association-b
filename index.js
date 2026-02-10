@@ -24,15 +24,15 @@
 
 
 const express = require('express')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const cors = require("cors")
 const bodyParser = require("body-parser");
 //  const bcrypt = require("bcrypt");
  
 
 // const multer = require('multer');
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 // import path from "path";
  
 

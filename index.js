@@ -37,7 +37,7 @@ const cors = require("cors")
  
 
 // event activities 
-// const EventModel = require('./models/event.js')
+const EventModel = require('./models/event.js')
 // const ServiceModel = require('./models/service.js')
 
 // const ContactModel = require('./models/contact.js')
@@ -195,69 +195,6 @@ app.post('/contactschool', (req, res) => {
        res.json(contactsch)})
     .catch(err => res.json(err));
 })
-app.get("/events" , (req,res) => {
- EventModel.find({}) //حتىalways returns an array, even  if empty .
-    .then(event => res.json(event))     // sends array of events
-    .catch(err => res.json(err))
-})
-
- 
-// true
-
-app.get("/getEvent/:id" , (req,res) => {
-    const id = req.params.id;
-    EventModel.findById({_id:id})
-    .then(event => res.json(event)) 
-    .catch(err => res.json(err))
-})
-
-
-
-app.post("/createEventBase64", async (req, res) => {
-  try {
-    const { date, place, title, text, mainImage, images } = req.body;
-
-    const newEvent = new EventModel({
-      mainImage: mainImage || "",
-      images: images || [],
-      date,
-      place,
-      title,
-      text,
-    });
-
-    const savedEvent = await newEvent.save();
-    res.status(201).json(savedEvent);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-
-app.put("/updateEvent/:id" , (req,res) => {
-    const id = req.params.id;
-    EventModel.findByIdAndUpdate({_id:id}, {
-// Updated fields
-     mainImage	: req.body.mainImage	,  
-      images	: req.body.images	,  
-      date	: req.body.date,  
-     place: req.body.place,  
-           title : req.body.title , 
-         text: req.body.text,  
- 
-            
-
-    })
-    .then(event => res.json(event))
-            // .then(user => res.json(user))
-
-        // .then(groups => res.json(groups))
-
-    .catch(err => res.json(err))
-})  
-
-
 
 // app.put("/deleteEventImage/:id" ,async (req, res) => {
 //   try {
@@ -276,18 +213,6 @@ app.put("/updateEvent/:id" , (req,res) => {
 // });
 
 
-app.delete("/deleteEvent/:id", async (req, res) => {
-  const id = req.params.id;
-  try {
-    const deletedUser = await EventModel.findByIdAndDelete(id);
-    if (!deletedUser) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.json(deletedUser);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 
 
 

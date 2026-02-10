@@ -42,7 +42,7 @@ const cors = require("cors")
 
 // const ContactModel = require('./models/contact.js')
 // const User = require('./models/User.js')
-// const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
 // const PORT = process.env.PORT;
 // const PORT = 3001;

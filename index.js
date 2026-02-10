@@ -230,12 +230,6 @@ app.get("/services", async (req, res) => {
 });
 
 
-app.get("/getService/:id" , (req,res) => {
-    const id = req.params.id;
-    EventModel.findById({_id:id})
-    .then(event => res.json(event)) 
-    .catch(err => res.json(err))
-})
 app.post("/createservices", async (req, res) => {
   try {
     const service = await ServiceModel.create(req.body);
